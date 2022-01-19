@@ -8,9 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-@NoRepositoryBean
 public interface UserDao extends JpaRepository<User, Integer> {
-    Optional<User> findByTcknoandPassword(String tckNo, String password);
+    Optional<User> findByTckNoAndPassword(String tckNo, String password);
 
     Optional<User> findById(int userId);
 }

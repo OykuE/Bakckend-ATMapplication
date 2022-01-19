@@ -16,8 +16,8 @@ public class UserManager implements UserService {
 
     @Override
     public User login(String tckNo, String password) {
-        if(userDao.findByTcknoandPassword(tckNo,password).isPresent()){
-            return userDao.findByTcknoandPassword(tckNo,password).get();
+        if(userDao.findByTckNoAndPassword(tckNo,password).isPresent()){
+            return userDao.findByTckNoAndPassword(tckNo,password).get();
         }
         return null;
     }
