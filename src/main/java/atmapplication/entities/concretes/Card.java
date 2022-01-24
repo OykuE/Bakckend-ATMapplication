@@ -25,4 +25,7 @@ public class Card {
     @Column(name="card_type")
     private String cardType;
 
+    @Column(name="debt")
+    private double debt;
+
 }
