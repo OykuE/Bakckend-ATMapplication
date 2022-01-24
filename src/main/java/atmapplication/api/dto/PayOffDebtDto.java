@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class PayOffDebtDto {
     private int userId;
     private String cardType;
+    private String accountType;
     private double payoff;
 }
