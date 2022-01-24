@@ -1,5 +1,6 @@
 package atmapplication.business.concretes;
 
+import atmapplication.business.abstracts.AccountService;
 import atmapplication.business.abstracts.CardService;
 import atmapplication.dataAccess.CardDao;
 import atmapplication.entities.concretes.Card;
@@ -11,6 +12,13 @@ public class CardManager implements CardService {
 
     @Autowired
     CardDao cardDao;
+
+
+    private AccountService accountService;
+
+    public CardManager(AccountService accountService) {
+        this.accountService = accountService;
+    }
 
     @Override
     public Card getCard(int userId) {
@@ -30,11 +38,12 @@ public class CardManager implements CardService {
     }
 
     @Override
-    public Integer payOffDebt(int userId, String cardType, double payoff) {
+    public Integer payOffDebt(int userId, String cardType, String accountType, double payoff) {
         if(cardDao.findByUserIdAndCardType(userId,cardType).isPresent()){
             Card card = cardDao.findByUserIdAndCardType(userId,cardType).get();
             card.setDebt((card.getDebt())-payoff);
             cardDao.save(card);
+            accountService.withdraw(userId,accountType,payoff);
             return 1;
         }
         return -1;

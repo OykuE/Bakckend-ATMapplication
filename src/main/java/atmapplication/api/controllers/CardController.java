@@ -32,7 +32,7 @@ public class CardController {
 
    @PutMapping("/pay-off-dept")
     public ResponseEntity<Integer> payOffDebt(@RequestBody PayOffDebtDto payOffDebtDto){
-        return ResponseEntity.ok(cardService.payOffDebt(payOffDebtDto.getUserId(),payOffDebtDto.getCardType(),payOffDebtDto.getPayoff()));
+        return ResponseEntity.ok(cardService.payOffDebt(payOffDebtDto.getUserId(),payOffDebtDto.getCardType(),payOffDebtDto.getAccountType(),payOffDebtDto.getPayoff()));
    }
 
 
