@@ -17,7 +17,7 @@ public class Account {
     private String accountNumber;
 
     @Column(name="user_id")
-    private String userId;
+    private int userId;
 
     @Column(name="balance")
     private double balance;
