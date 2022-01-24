@@ -20,4 +20,12 @@ public class CardManager implements CardService {
         }
         return null;
     }
+
+    @Override
+    public Card cards(int userId, String cardType) {
+        if(cardDao.findByUserIdAndCardType(userId,cardType).isPresent()){
+            return cardDao.findByUserIdAndCardType(userId,cardType).get();
+        }
+        return null;
+    }
 }
