@@ -9,6 +9,5 @@ import java.util.Optional;
 @Repository
 public interface CardDao extends JpaRepository<Card, Integer> {
     Optional<Card> getByUserId(int userId);
-
     Optional<Card> findByUserIdAndCardType(int userId, String cardType);
 }
