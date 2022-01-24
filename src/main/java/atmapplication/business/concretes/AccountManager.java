@@ -30,4 +30,15 @@ public class AccountManager implements AccountService {
         }
         return -1;
     }
+
+    @Override
+    public Integer deposit(int userId, String accountType, double deposit) {
+        if(accountDao.findByUserIdAndAccountType(userId,accountType).isPresent()){
+            Account account = accountDao.findByUserIdAndAccountType(userId,accountType).get();
+            account.setBalance((account.getBalance())+deposit);
+            accountDao.save(account);
+            return 1;
+        }
+        return -1;
+    }
 }
