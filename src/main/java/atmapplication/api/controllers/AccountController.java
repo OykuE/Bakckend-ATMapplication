@@ -1,6 +1,7 @@
 package atmapplication.api.controllers;
 
 import atmapplication.api.dto.AccountsDto;
+import atmapplication.api.dto.DepositDto;
 import atmapplication.api.dto.WithdrawDto;
 import atmapplication.business.abstracts.AccountService;
 import atmapplication.entities.concretes.Account;
@@ -24,8 +25,14 @@ public class AccountController {
         return ResponseEntity.ok(accountService.accounts(accountsDto.getUserId(),accountsDto.getAccountType()));
     }
 
-    @PutMapping("/withraw")
+    @PutMapping("/withdraw")
     public ResponseEntity<Integer> withdraw(@RequestBody WithdrawDto withdrawDto){
         return ResponseEntity.ok(accountService.withdraw(withdrawDto.getUserId(),withdrawDto.getAccountType(),withdrawDto.getWithdraw()));
     }
+
+    @PutMapping("/deposit")
+    public ResponseEntity<Integer> deposit(@RequestBody DepositDto depositDto){
+        return ResponseEntity.ok(accountService.deposit(depositDto.getUserId(),depositDto.getAccountType(),depositDto.getDeposit()));
+    }
+
 }
