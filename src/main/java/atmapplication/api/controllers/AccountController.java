@@ -1,7 +1,6 @@
 package atmapplication.api.controllers;
 
 import atmapplication.api.dto.AccountsDto;
-import atmapplication.api.dto.PayOffDebtDto;
 import atmapplication.api.dto.WithdrawDto;
 import atmapplication.business.abstracts.AccountService;
 import atmapplication.entities.concretes.Account;
