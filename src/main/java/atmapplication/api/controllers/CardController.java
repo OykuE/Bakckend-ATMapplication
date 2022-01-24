@@ -1,6 +1,7 @@
 package atmapplication.api.controllers;
 
 import atmapplication.api.dto.CardsDto;
+import atmapplication.api.dto.PayOffDebtDto;
 import atmapplication.business.abstracts.CardService;
 import atmapplication.entities.concretes.Card;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +28,12 @@ public class CardController {
     public ResponseEntity<Card> cards(@RequestBody CardsDto cardsDto){
         return ResponseEntity.ok(cardService.cards(cardsDto.getUserId(),cardsDto.getCardType()));
     }
+
+
+   @PutMapping("/pay-off-dept")
+    public ResponseEntity<Integer> payOffDebt(@RequestBody PayOffDebtDto payOffDebtDto){
+        return ResponseEntity.ok(cardService.payOffDebt(payOffDebtDto.getUserId(),payOffDebtDto.getCardType(),payOffDebtDto.getPayoff()));
+   }
+
+
 }
