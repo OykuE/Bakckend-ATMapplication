@@ -28,4 +28,16 @@ public class CardManager implements CardService {
         }
         return null;
     }
+
+    @Override
+    public Integer payOffDebt(int userId, String cardType, double payoff) {
+        if(cardDao.findByUserIdAndCardType(userId,cardType).isPresent()){
+            Card card = cardDao.findByUserIdAndCardType(userId,cardType).get();
+            card.setDebt((card.getDebt())-payoff);
+            cardDao.save(card);
+            return 1;
+        }
+        return -1;
+    }
+
 }
