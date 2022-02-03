@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/accounts")
 public class AccountController {
@@ -26,12 +27,12 @@ public class AccountController {
     }
 
     @PutMapping("/withdraw")
-    public ResponseEntity<Integer> withdraw(@RequestBody WithdrawDto withdrawDto){
+    public ResponseEntity<Double> withdraw(@RequestBody WithdrawDto withdrawDto){
         return ResponseEntity.ok(accountService.withdraw(withdrawDto.getUserId(),withdrawDto.getAccountType(),withdrawDto.getWithdraw()));
     }
 
     @PutMapping("/deposit")
-    public ResponseEntity<Integer> deposit(@RequestBody DepositDto depositDto){
+    public ResponseEntity<Double> deposit(@RequestBody DepositDto depositDto){
         return ResponseEntity.ok(accountService.deposit(depositDto.getUserId(),depositDto.getAccountType(),depositDto.getDeposit()));
     }
 

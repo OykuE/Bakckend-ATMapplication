@@ -21,24 +21,29 @@ public class AccountManager implements AccountService {
     }
 
     @Override
-    public Integer withdraw(int userId, String accountType, double withdraw) {
+    public Double withdraw(int userId, String accountType, double withdraw) {
         if(accountDao.findByUserIdAndAccountType(userId,accountType).isPresent()){
             Account account = accountDao.findByUserIdAndAccountType(userId,accountType).get();
-            account.setBalance((account.getBalance())-withdraw);
-            accountDao.save(account);
-            return 1;
+            if(account.getBalance() - withdraw < 0) {
+                return Double.valueOf(-2);
+            } else {
+                account.setBalance((account.getBalance())-withdraw);
+                accountDao.save(account);
+                return account.getBalance();
+            }
+
         }
-        return -1;
+        return Double.valueOf(-1);
     }
 
     @Override
-    public Integer deposit(int userId, String accountType, double deposit) {
+    public Double deposit(int userId, String accountType, double deposit) {
         if(accountDao.findByUserIdAndAccountType(userId,accountType).isPresent()){
             Account account = accountDao.findByUserIdAndAccountType(userId,accountType).get();
             account.setBalance((account.getBalance())+deposit);
             accountDao.save(account);
-            return 1;
+            return account.getBalance();
         }
-        return -1;
+        return Double.valueOf(-1);
     }
 }
